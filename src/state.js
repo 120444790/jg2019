@@ -1,26 +1,29 @@
-export function initSate(vm){
+import { observe } from "./observe/index";
+export function initSate(vm) {
     const opts = vm.$options;
-    if(opts.props){
+    if (opts.props) {
         initProps(vm);
     }
-    if(opts.methods){
+    if (opts.methods) {
         initMethod(vm);
     }
-    if(opts.data){
+    if (opts.data) {
         initData(vm);
     }
-    if(opts.computed){
+    if (opts.computed) {
         initComputed(vm);
     }
-    if(opts.watch){
+    if (opts.watch) {
         initWatch(vm);
     }
 }
 
-function initProps(){}
-function initMethod(){}
-function initData(vm){
-    console.log(vm.$options.data);
+function initProps() { }
+function initMethod() { }
+function initData(vm) {
+    let data = vm.$options.data;
+    data = vm._data = typeof data === 'function' ? data.call(vm) : data;
+    observe(data);
 }
-function initComputed(){}
-function initWatch(){}
+function initComputed() { }
+function initWatch() { }

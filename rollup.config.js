@@ -5,13 +5,13 @@ export default {
     input: './src/index.js',
     output: {
         file: 'dist/umd/vue.js',
-        name: 'vue',
+        name: 'Vue',
         format: 'umd',
         sourcemap: true
     },
     plugins: [
         babel({
-            exclude: 'node_modules/*'
+            exclude: 'node_modules/**'
         }),
         process.env.ENV === 'development' ? serve({
             open: true,
